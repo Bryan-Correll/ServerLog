@@ -1,0 +1,7 @@
+
+*.xml
+bin/*
+
+*.prefs
+
+*.iml
