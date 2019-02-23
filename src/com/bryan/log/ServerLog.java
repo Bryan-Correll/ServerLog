@@ -14,12 +14,10 @@ import com.bryan.log.players.GamemodeChange;
 import com.bryan.log.players.Respawn;
 import com.bryan.log.players.Teleport;
 import com.bryan.log.server_info.*;
+import com.bryan.log.server_log_api.getAPI;
 import com.bryan.log.type.Chat;
 import com.bryan.log.type.Command;
-import com.bryan.log.utils.DirectoryEnums;
-import com.bryan.log.utils.FileEnums;
-import com.bryan.log.utils.Metrics;
-import com.bryan.log.utils.UpdateChecker;
+import com.bryan.log.utils.*;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -42,9 +40,14 @@ public class ServerLog extends JavaPlugin {
     private TPS tps;
     private RamUsage ramUsage;
     private UpdateChecker updater;
+    private Methods methods;
+
+    public getAPI getAPI;
 
     @Override
     public void onEnable() {
+
+        getAPI = new getAPI(this);
 
         chunksLoaded = new ChunksLoaded(this);
         entityCount = new EntityCount(this);
@@ -52,6 +55,7 @@ public class ServerLog extends JavaPlugin {
         tps = new TPS(this);
         ramUsage = new RamUsage(this);
         updater = new UpdateChecker(this);
+        methods = new Methods(this);
 
         saveDefaultConfig();
         reloadConfig();
@@ -65,7 +69,7 @@ public class ServerLog extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(color(""));
 
         try {
-            initiateFolders();
+            methods.initiateFolders();
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
@@ -101,66 +105,6 @@ public class ServerLog extends JavaPlugin {
 
     private String color(String string) {
         return ChatColor.translateAlternateColorCodes('&', string);
-    }
-
-    public void initiateFolders() throws IOException, InvalidConfigurationException {
-
-        File fileDirectory = getDataFolder();
-        if (!fileDirectory.exists()) {
-            Bukkit.getConsoleSender().sendMessage(color("&7&l[SERVERLOG INFO] &aThe folder '" + fileDirectory.getPath().replace("plugins\\", "") + "' has been created..."));
-            fileDirectory.mkdirs();
-        }
-
-        List<File> directories = new ArrayList<>();
-        for (DirectoryEnums dir : DirectoryEnums.values()) {
-            if (!directories.contains(new File(getDataFolder() + dir.directory))) {
-                directories.add(new File(getDataFolder() + dir.directory));
-            }
-        }
-
-        List<File> files = new ArrayList<>();
-        for (FileEnums file : FileEnums.values()) {
-            if (!files.contains(new File(getDataFolder() + file.fileName))) {
-                files.add(new File(getDataFolder() + file.fileName));
-            }
-        }
-
-        for (File dir : directories) {
-            if (!dir.exists()) {
-                dir.mkdirs();
-                Bukkit.getConsoleSender().sendMessage(color("&7&l[SERVERLOG INFO] &aThe folder '" + dir.getPath().replace("plugins\\", "") + "' has been created..."));
-            }
-            if (dir.equals(new File(getDataFolder() + "/Lang/"))) {
-                for (File langFile : files) {
-                    if (!langFile.exists()) {
-                        saveResource(langFile.getName(), false);
-                        FileUtils.moveFile(new File(getDataFolder() + "/" + langFile.getName()), new File(getDataFolder() + "/Lang/" + langFile.getName()));
-                        FileConfiguration fileConfig = YamlConfiguration.loadConfiguration(langFile);
-                        fileConfig.load(langFile);
-                        Bukkit.getConsoleSender().sendMessage(color("&7&l[SERVERLOG INFO] &eThe lang file '" + langFile.getName() + "' has been created..."));
-                    }
-                }
-            } else if (dir.equals(new File(getDataFolder() + "/Server Information/Entity Count/"))) {
-                for (World world : Bukkit.getServer().getWorlds()) {
-                    File worldDir = new File(dir + "/" + world.getName() + "/");
-                    if (!worldDir.exists()) {
-                        worldDir.mkdirs();
-                        Bukkit.getConsoleSender().sendMessage(color("&7&l[SERVERLOG INFO] &aThe folder '" + worldDir.getPath().replace("plugins\\", "") + "' has been created..."));
-                    }
-                }
-            } else if (dir.equals(new File(getDataFolder() + "/Server Information/Chunks Loaded/"))) {
-                for (World world : Bukkit.getServer().getWorlds()) {
-                    File worldDir = new File(dir + "/" + world.getName() + "/");
-                    if (!worldDir.exists()) {
-                        worldDir.mkdirs();
-                        Bukkit.getConsoleSender().sendMessage(color("&7&l[SERVERLOG INFO] &aThe folder '" + worldDir.getPath().replace("plugins\\", "") + "' has been created..."));
-                    }
-                }
-            }
-        }
-
-        Bukkit.getConsoleSender().sendMessage(color("&7&l[SERVERLOG INFO] &2All files have been initiated..."));
-
     }
 
     private void serverInfo() {

@@ -1,6 +1,7 @@
 package com.bryan.log.players;
 
 import com.bryan.log.ServerLog;
+import com.bryan.log.server_log_api.ServerLogEvent;
 import com.bryan.log.utils.Methods;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -22,6 +23,10 @@ public class GamemodeChange implements Listener {
 	
 	@EventHandler
 	public void onGamemodeChange(PlayerGameModeChangeEvent e) throws IOException {
+
+		ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("gamemode-change-event").replace("[player]", e.getPlayer().getName()).replace("[previous]", e.getPlayer().getGameMode().name()).replace("[now]", e.getNewGameMode().name()), methods.getTime(), methods.getDate(), "plugins/ServerLog/Players/Gamemode Change/", "PlayerGameModeChangeEvent");
+		Bukkit.getPluginManager().callEvent(logEvent);
+
 		if (methods.dateChanged("/Players/Gamemode Change/")) {
 			try {
 				methods.moveToHistory();

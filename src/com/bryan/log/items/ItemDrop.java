@@ -1,6 +1,7 @@
 package com.bryan.log.items;
 
 import com.bryan.log.ServerLog;
+import com.bryan.log.server_log_api.ServerLogEvent;
 import com.bryan.log.utils.Methods;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -23,13 +24,7 @@ public class ItemDrop implements Listener {
 	
 	@EventHandler
 	public void onItemDrop(PlayerDropItemEvent e) throws IOException {
-		if (methods.dateChanged("/Items/Item Drop/")) {
-			try {
-				methods.moveToHistory();
-			} catch (InvalidConfigurationException ex) {
-				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
-			}
-		}
+
 		String blockName;
 		ItemStack item = e.getItemDrop().getItemStack();
 		if (item.hasItemMeta()) {
@@ -41,6 +36,18 @@ public class ItemDrop implements Listener {
 		} else {
 			blockName = item.getType().name();
 		}
+
+		ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("drop-item-event").replace("[time]: ", "").replace("[player]", e.getPlayer().getName()).replace("[name]", blockName), methods.getTime(), methods.getDate(), "plugins/ServerLog/Items/Item Drop/", "PlayerDropItemEvent");
+		Bukkit.getPluginManager().callEvent(logEvent);
+
+		if (methods.dateChanged("/Items/Item Drop/")) {
+			try {
+				methods.moveToHistory();
+			} catch (InvalidConfigurationException ex) {
+				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+			}
+		}
+
 		methods.appendString("/Items/Item Drop/", methods.getConfigFile().getString("drop-item-event").replace("[player]", e.getPlayer().getName()).replace("[name]", blockName));
 	}
 	

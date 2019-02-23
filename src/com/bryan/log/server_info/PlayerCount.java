@@ -1,6 +1,7 @@
 package com.bryan.log.server_info;
 
 import com.bryan.log.ServerLog;
+import com.bryan.log.server_log_api.ServerLogEvent;
 import com.bryan.log.utils.Methods;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -18,6 +19,12 @@ public class PlayerCount {
     }
 
     public void appendPlayerCount() throws IOException {
+
+        Integer playerCount = Bukkit.getServer().getOnlinePlayers().size();
+
+        ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("player-count").replace("[count]", playerCount.toString()), methods.getTime(), methods.getDate(), "plugins/ServerLog/Server Information/Player Count/", "");
+        Bukkit.getPluginManager().callEvent(logEvent);
+
         if (methods.dateChanged("/Server Information/Player Count/")) {
             try {
                 methods.moveToHistory();
@@ -25,8 +32,6 @@ public class PlayerCount {
                 Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
             }
         }
-
-        Integer playerCount = Bukkit.getServer().getOnlinePlayers().size();
         methods.appendString("/Server Information/Player Count/", methods.getConfigFile().getString("player-count").replace("[count]", playerCount.toString()));
     }
 

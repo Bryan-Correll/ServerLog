@@ -2,6 +2,7 @@ package com.bryan.log.players;
 
 import java.io.IOException;
 
+import com.bryan.log.server_log_api.ServerLogEvent;
 import com.bryan.log.utils.Methods;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -23,6 +24,10 @@ public class Respawn implements Listener {
 	
 	@EventHandler
 	public void onRespawn(PlayerRespawnEvent e) throws IOException {
+
+		ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("respawn-event").replace("[player]", e.getPlayer().getName()), methods.getTime(), methods.getDate(), "plugins/ServerLog/Players/Respawn/", "PlayerRespawnEvent");
+		Bukkit.getPluginManager().callEvent(logEvent);
+
 		if (methods.dateChanged("/Players/Respawn/")) {
 			try {
 				methods.moveToHistory();

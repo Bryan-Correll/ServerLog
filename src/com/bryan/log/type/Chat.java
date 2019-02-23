@@ -1,6 +1,7 @@
 package com.bryan.log.type;
 
 import com.bryan.log.ServerLog;
+import com.bryan.log.server_log_api.ServerLogEvent;
 import com.bryan.log.utils.Methods;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -22,6 +23,10 @@ public class Chat implements Listener {
 	
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e) throws IOException {
+
+		ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("async-chat-event").replace("[player]", e.getPlayer().getName()).replace("[message]", ChatColor.stripColor(e.getMessage())), methods.getTime(), methods.getDate(), "plugins/ServerLog/Chat/", "AsyncPlayerChatEvent");
+		Bukkit.getPluginManager().callEvent(logEvent);
+
 		if (methods.dateChanged("/Chat/")) {
 			try {
 				methods.moveToHistory();

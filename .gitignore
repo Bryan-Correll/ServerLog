@@ -1,6 +1,9 @@
 
 *.xml
+
 bin/*
+
+out/*
 
 *.prefs
 

@@ -1,6 +1,7 @@
 package com.bryan.log.activity;
 
 import com.bryan.log.ServerLog;
+import com.bryan.log.server_log_api.ServerLogEvent;
 import com.bryan.log.utils.Methods;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -22,6 +23,12 @@ public class Quit implements Listener {
 
 	@EventHandler
 	public void onQuit(PlayerQuitEvent e) throws IOException {
+		Integer x = e.getPlayer().getLocation().getBlockX();
+		Integer y = e.getPlayer().getLocation().getBlockY();
+		Integer z = e.getPlayer().getLocation().getBlockZ();
+
+		ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("quit-event").replace("[time]: ", "").replace("[player]", e.getPlayer().getName()).replace("[ip]", e.getPlayer().getAddress().getAddress().getHostAddress()).replace("[x]", x.toString()).replace("[y]", y.toString()).replace("[z]", z.toString()), methods.getTime(), methods.getDate(), "plugins/ServerLog/Activity/Player Quit/", "PlayerQuitEvent");
+		Bukkit.getPluginManager().callEvent(logEvent);
 		if (methods.dateChanged("/Activity/Player Quit/")) {
 			try {
 				methods.moveToHistory();
@@ -29,9 +36,6 @@ public class Quit implements Listener {
 				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
 			}
 		}
-		Integer x = e.getPlayer().getLocation().getBlockX();
-		Integer y = e.getPlayer().getLocation().getBlockY();
-		Integer z = e.getPlayer().getLocation().getBlockZ();
 		methods.appendString("/Activity/Player Quit/", methods.getConfigFile().getString("quit-event").replace("[player]", e.getPlayer().getName()).replace("[ip]", e.getPlayer().getAddress().getAddress().getHostAddress()).replace("[x]", x.toString()).replace("[y]", y.toString()).replace("[z]", z.toString()));
 	}
 }

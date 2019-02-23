@@ -1,6 +1,7 @@
 package com.bryan.log.server_info;
 
 import com.bryan.log.ServerLog;
+import com.bryan.log.server_log_api.ServerLogEvent;
 import com.bryan.log.utils.Methods;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,13 +20,7 @@ public class RamUsage {
     }
 
     public void appendRamUsage() throws IOException {
-        if (methods.dateChanged("/Server Information/Ram Usage/")) {
-            try {
-                methods.moveToHistory();
-            } catch (InvalidConfigurationException ex) {
-                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
-            }
-        }
+
         long maxMemory = Runtime.getRuntime().maxMemory() / 1048576L;
         long freeMemory = Runtime.getRuntime().freeMemory() / 1048576L;
         long usedMemory = maxMemory - freeMemory;
@@ -33,6 +28,17 @@ public class RamUsage {
 
         DecimalFormat twoDPlaces = new DecimalFormat("###,###,###.##");
         String percent = twoDPlaces.format(percentUsed);
+
+        ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("ram-usage").replace("[ram]", usedMemory + "MB / " + maxMemory + "MB (" + percent + "%)"), methods.getTime(), methods.getDate(), "plugins/ServerLog/Server Information/Ram Usage/", "");
+        Bukkit.getPluginManager().callEvent(logEvent);
+
+        if (methods.dateChanged("/Server Information/Ram Usage/")) {
+            try {
+                methods.moveToHistory();
+            } catch (InvalidConfigurationException ex) {
+                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+            }
+        }
         methods.appendString("/Server Information/Ram Usage/", methods.getConfigFile().getString("ram-usage").replace("[ram]", usedMemory + "MB / " + maxMemory + "MB (" + percent + "%)"));
     }
 

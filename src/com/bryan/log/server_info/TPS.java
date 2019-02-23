@@ -1,6 +1,7 @@
 package com.bryan.log.server_info;
 
 import com.bryan.log.ServerLog;
+import com.bryan.log.server_log_api.ServerLogEvent;
 import com.bryan.log.utils.Methods;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -44,13 +45,6 @@ public class TPS {
     }
 
     public void appendTPS() throws IOException {
-        if (methods.dateChanged("/Server Information/TPS/")) {
-            try {
-                methods.moveToHistory();
-            } catch (InvalidConfigurationException ex) {
-                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
-            }
-        }
 
         try {
             serverInstance = getNMSClass("MinecraftServer").getMethod("getServer").invoke(null);
@@ -59,6 +53,16 @@ public class TPS {
             e.printStackTrace();
         }
 
+        ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("tps").replace("[tps]", getTPS(0)), methods.getTime(), methods.getDate(), "plugins/ServerLog/Server Information/TPS/", "");
+        Bukkit.getPluginManager().callEvent(logEvent);
+
+        if (methods.dateChanged("/Server Information/TPS/")) {
+            try {
+                methods.moveToHistory();
+            } catch (InvalidConfigurationException ex) {
+                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+            }
+        }
         methods.appendString("/Server Information/TPS/", methods.getConfigFile().getString("tps").replace("[tps]", getTPS(0)));
     }
 

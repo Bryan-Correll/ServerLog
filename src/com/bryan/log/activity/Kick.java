@@ -1,6 +1,7 @@
 package com.bryan.log.activity;
 
 import com.bryan.log.ServerLog;
+import com.bryan.log.server_log_api.ServerLogEvent;
 import com.bryan.log.utils.Methods;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -22,6 +23,8 @@ public class Kick implements Listener {
 
 	@EventHandler
 	public void onKick(PlayerKickEvent e) throws IOException {
+		ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("kick-event").replace("[time]: ", "").replace("[player]", e.getPlayer().getName()).replace("[ip]", e.getPlayer().getAddress().getAddress().getHostAddress()).replace("[reason]", e.getReason()), methods.getTime(), methods.getDate(), "plugins/ServerLog/Activity/Player Kick/", "PlayerKickEvent");
+		Bukkit.getPluginManager().callEvent(logEvent);
 		if (methods.dateChanged("/Activity/Player Kick/")) {
 			try {
 				methods.moveToHistory();

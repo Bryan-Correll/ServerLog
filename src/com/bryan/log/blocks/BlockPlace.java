@@ -1,6 +1,7 @@
 package com.bryan.log.blocks;
 
 import com.bryan.log.ServerLog;
+import com.bryan.log.server_log_api.ServerLogEvent;
 import com.bryan.log.utils.Methods;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -22,13 +23,7 @@ public class BlockPlace implements Listener{
 	
 	@EventHandler
 	public void onBlockPlace(BlockPlaceEvent e) throws IOException {
-		if (methods.dateChanged("/Blocks/Block Place/")) {
-			try {
-				methods.moveToHistory();
-			} catch (InvalidConfigurationException ex) {
-				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
-			}
-		}
+
 		Integer x = e.getBlock().getX();
 		Integer y = e.getBlock().getY();
 		Integer z = e.getBlock().getZ();
@@ -42,6 +37,17 @@ public class BlockPlace implements Listener{
 			}
 		} else {
 			blockName = e.getBlock().getType().name();
+		}
+
+		ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("block-place-event").replace("[time]: ", "").replace("[player]", e.getPlayer().getName()).replace("[block]", blockName).replace("[x]", x.toString()).replace("[y]", y.toString()).replace("[z]", z.toString()), methods.getTime(), methods.getDate(), "plugins/ServerLog/Blocks/Block Place/", "BlockPlaceEvent");
+		Bukkit.getPluginManager().callEvent(logEvent);
+
+		if (methods.dateChanged("/Blocks/Block Place/")) {
+			try {
+				methods.moveToHistory();
+			} catch (InvalidConfigurationException ex) {
+				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+			}
 		}
 		methods.appendString("/Blocks/Block Place/", methods.getConfigFile().getString("block-place-event").replace("[player]", e.getPlayer().getName()).replace("[block]", blockName).replace("[x]", x.toString()).replace("[y]", y.toString()).replace("[z]", z.toString()));
 	}
