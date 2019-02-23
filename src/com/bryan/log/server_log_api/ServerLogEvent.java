@@ -45,6 +45,6 @@ public class ServerLogEvent extends Event {
         return event;
     }
 
-    public String getDirectory() { return directory; }
+    public String getDirectory() { return directory.replace("plugins/", ""); }
 
 }
