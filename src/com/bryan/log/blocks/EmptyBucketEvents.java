@@ -51,6 +51,7 @@ public class EmptyBucketEvents implements Listener {
 		}
 
 		methods.appendString("/Blocks/Empty Bucket/", methods.getConfigFile().getString("empty-bucket-event").replace("[player]", e.getPlayer().getName()).replace("[bucket]", bucketName).replace("[x]", x.toString()).replace("[y]", y.toString()).replace("[z]", z.toString()));
+		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("empty-bucket-event").replace("[player]", e.getPlayer().getName()).replace("[bucket]", bucketName).replace("[x]", x.toString()).replace("[y]", y.toString()).replace("[z]", z.toString()));
 	}
 	
 }

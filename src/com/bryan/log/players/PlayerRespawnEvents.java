@@ -13,11 +13,11 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 import com.bryan.log.ServerLog;
 
-public class Respawn implements Listener {
+public class PlayerRespawnEvents implements Listener {
 	
 	private ServerLog serverLog;
 	private Methods methods;
-	public Respawn(ServerLog serverLog) {
+	public PlayerRespawnEvents(ServerLog serverLog) {
 		this.serverLog = serverLog;
 		this.methods = new Methods(serverLog);
 	}
@@ -36,6 +36,7 @@ public class Respawn implements Listener {
 			}
 		}
 		methods.appendString("/Players/Respawn/", methods.getConfigFile().getString("respawn-event").replace("[player]", e.getPlayer().getName()));
+		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("respawn-event").replace("[player]", e.getPlayer().getName()));
 	}
 	
 }

@@ -37,5 +37,6 @@ public class PlayerQuitEvents implements Listener {
 			}
 		}
 		methods.appendString("/Activity/Player Quit/", methods.getConfigFile().getString("quit-event").replace("[player]", e.getPlayer().getName()).replace("[ip]", e.getPlayer().getAddress().getAddress().getHostAddress()).replace("[x]", x.toString()).replace("[y]", y.toString()).replace("[z]", z.toString()));
+		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("quit-event").replace("[player]", e.getPlayer().getName()).replace("[ip]", e.getPlayer().getAddress().getAddress().getHostAddress()).replace("[x]", x.toString()).replace("[y]", y.toString()).replace("[z]", z.toString()));
 	}
 }

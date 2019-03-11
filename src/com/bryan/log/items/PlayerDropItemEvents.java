@@ -49,6 +49,7 @@ public class PlayerDropItemEvents implements Listener {
 		}
 
 		methods.appendString("/Items/Item Drop/", methods.getConfigFile().getString("drop-item-event").replace("[player]", e.getPlayer().getName()).replace("[name]", blockName));
+		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("drop-item-event").replace("[player]", e.getPlayer().getName()).replace("[name]", blockName));
 	}
 	
 }

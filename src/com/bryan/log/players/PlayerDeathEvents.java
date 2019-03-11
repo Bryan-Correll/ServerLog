@@ -13,11 +13,11 @@ import org.bukkit.inventory.ItemStack;
 
 import java.io.IOException;
 
-public class Death implements Listener {
+public class PlayerDeathEvents implements Listener {
 	
 	private ServerLog serverLog;
 	private Methods methods;
-	public Death(ServerLog serverLog) {
+	public PlayerDeathEvents(ServerLog serverLog) {
 		this.serverLog = serverLog;
 		this.methods = new Methods(serverLog);
 	}
@@ -52,6 +52,7 @@ public class Death implements Listener {
 			}
 		}
 		methods.appendString("/Players/Death/", methods.getConfigFile().getString("death-event").replace("[player]", e.getEntity().getName()).replace("[reason]", reason));
+		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("death-event").replace("[player]", e.getEntity().getName()).replace("[reason]", reason));
 	}
 	
 }

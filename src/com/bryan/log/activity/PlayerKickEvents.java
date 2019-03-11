@@ -33,5 +33,6 @@ public class PlayerKickEvents implements Listener {
 			}
 		}
 		methods.appendString("/Activity/Player Kick/", methods.getConfigFile().getString("kick-event").replace("[player]", e.getPlayer().getName()).replace("[ip]", e.getPlayer().getAddress().getAddress().getHostAddress()).replace("[reason]", e.getReason()));
+		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("kick-event").replace("[player]", e.getPlayer().getName()).replace("[ip]", e.getPlayer().getAddress().getAddress().getHostAddress()).replace("[reason]", e.getReason()));
 	}
 }

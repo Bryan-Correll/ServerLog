@@ -49,6 +49,7 @@ public class PlayerPickupItemsEvents implements Listener {
 		}
 
 		methods.appendString("/Items/Item Pickup/", methods.getConfigFile().getString("pickup-item-event").replace("[player]", e.getPlayer().getName()).replace("[name]", blockName));
+		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("pickup-item-event").replace("[player]", e.getPlayer().getName()).replace("[name]", blockName));
 	}
 	
 }

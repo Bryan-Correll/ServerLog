@@ -13,11 +13,11 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 
 import java.io.IOException;
 
-public class Teleport implements Listener {
+public class PlayerTeleportEvents implements Listener {
 	
 	private ServerLog serverLog;
 	private Methods methods;
-	public Teleport(ServerLog serverLog) {
+	public PlayerTeleportEvents(ServerLog serverLog) {
 		this.serverLog = serverLog;
 		this.methods = new Methods(serverLog);
 	}
@@ -42,6 +42,7 @@ public class Teleport implements Listener {
 			}
 		}
 		methods.appendString("/Players/Teleport/", methods.getConfigFile().getString("teleport-event").replace("[player]", e.getPlayer().getName()).replace("[location]", loc));
+		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("teleport-event").replace("[player]", e.getPlayer().getName()).replace("[location]", loc));
 	}
 	
 }

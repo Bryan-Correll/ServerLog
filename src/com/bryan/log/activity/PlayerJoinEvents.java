@@ -35,6 +35,7 @@ public class PlayerJoinEvents implements Listener {
 			}
 		}
 		methods.appendString("/Activity/Player Join/", methods.getConfigFile().getString("join-event").replace("[player]", e.getPlayer().getName()).replace("[ip]", e.getPlayer().getAddress().getAddress().getHostAddress()));
+		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("join-event").replace("[player]", e.getPlayer().getName()).replace("[ip]", e.getPlayer().getAddress().getAddress().getHostAddress()));
 	}
 
 }

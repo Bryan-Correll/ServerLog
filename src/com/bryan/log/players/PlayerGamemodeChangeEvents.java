@@ -12,11 +12,11 @@ import org.bukkit.event.player.PlayerGameModeChangeEvent;
 
 import java.io.IOException;
 
-public class GamemodeChange implements Listener {
+public class PlayerGamemodeChangeEvents implements Listener {
 	
 	private ServerLog serverLog;
 	private Methods methods;
-	public GamemodeChange(ServerLog serverLog) {
+	public PlayerGamemodeChangeEvents(ServerLog serverLog) {
 		this.serverLog = serverLog;
 		this.methods = new Methods(serverLog);
 	}
@@ -35,5 +35,6 @@ public class GamemodeChange implements Listener {
 			}
 		}
 		methods.appendString("/Players/Gamemode Change/", methods.getConfigFile().getString("gamemode-change-event").replace("[player]", e.getPlayer().getName()).replace("[previous]", e.getPlayer().getGameMode().name()).replace("[now]", e.getNewGameMode().name()));
+		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("gamemode-change-event").replace("[player]", e.getPlayer().getName()).replace("[previous]", e.getPlayer().getGameMode().name()).replace("[now]", e.getNewGameMode().name()));
 	}
 }

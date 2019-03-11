@@ -39,6 +39,7 @@ public class BlockBreakEvents implements Listener {
 			}
 		}
 		methods.appendString("/Blocks/Block Break/", methods.getConfigFile().getString("block-break-event").replace("[player]", e.getPlayer().getName()).replace("[block]", blockName).replace("[x]", x.toString()).replace("[y]", y.toString()).replace("[z]", z.toString()));
+		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("block-break-event").replace("[player]", e.getPlayer().getName()).replace("[block]", blockName).replace("[x]", x.toString()).replace("[y]", y.toString()).replace("[z]", z.toString()));
 	}
 
 }
