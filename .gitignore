@@ -5,6 +5,8 @@ bin/*
 
 out/*
 
+plugin.yml
+
 *.prefs
 
 *.iml
