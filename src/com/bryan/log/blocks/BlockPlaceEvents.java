@@ -46,7 +46,8 @@ public class BlockPlaceEvents implements Listener{
 			try {
 				methods.moveToHistory();
 			} catch (InvalidConfigurationException ex) {
-				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(Block Placed) There was a fatal error moving the files to the History... ERROR:");
+				ex.printStackTrace();
 			}
 		}
 		methods.appendString("/Blocks/Block Place/", methods.getConfigFile().getString("block-place-event").replace("[player]", e.getPlayer().getName()).replace("[block]", blockName).replace("[x]", x.toString()).replace("[y]", y.toString()).replace("[z]", z.toString()));

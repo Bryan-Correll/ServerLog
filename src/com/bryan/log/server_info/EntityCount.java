@@ -24,14 +24,14 @@ public class EntityCount {
             try {
                 methods.moveToHistory();
             } catch (InvalidConfigurationException ex) {
-                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(Entity Count) There was a fatal error moving the files to the History... ERROR:");
+                ex.printStackTrace();
             }
         }
         List<World> worlds = Bukkit.getServer().getWorlds();
         for (World world : worlds) {
             Integer entityCount = Bukkit.getServer().getWorld(world.getName()).getEntities().size();
             methods.appendString("/Server Information/Entity Count/" + world.getName() + "/", methods.getConfigFile().getString("entity-count").replace("[count]", entityCount.toString()));
-            methods.appendString("/Compiled Log/" + world.getName() + "/", methods.getConfigFile().getString("entity-count").replace("[count]", entityCount.toString()));
         }
     }
 

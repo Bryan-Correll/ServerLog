@@ -100,6 +100,7 @@ public class Methods {
         Files.move(new File(serverLog.getDataFolder() + "/Blocks/").toPath(), new File(serverLog.getDataFolder() + "/History/" + dateFormat.format(date) + "/Blocks/").toPath());
         Files.move(new File(serverLog.getDataFolder() + "/Chat/").toPath(), new File(serverLog.getDataFolder() + "/History/" + dateFormat.format(date) + "/Chat/").toPath());
         Files.move(new File(serverLog.getDataFolder() + "/Commands/").toPath(), new File(serverLog.getDataFolder() + "/History/" + dateFormat.format(date) + "/Commands/").toPath());
+        Files.move(new File(serverLog.getDataFolder() + "/Compiled Log/").toPath(), new File(serverLog.getDataFolder() + "/History/" + dateFormat.format(date) + "/Compiled Log/").toPath());
         Files.move(new File(serverLog.getDataFolder() + "/Custom APIs/").toPath(), new File(serverLog.getDataFolder() + "/History/" + dateFormat.format(date) + "/Custom APIs/").toPath());
         Files.move(new File(serverLog.getDataFolder() + "/Items/").toPath(), new File(serverLog.getDataFolder() + "/History/" + dateFormat.format(date) + "/Items/").toPath());
         Files.move(new File(serverLog.getDataFolder() + "/Players/").toPath(), new File(serverLog.getDataFolder() + "/History/" + dateFormat.format(date) + "/Players/").toPath());

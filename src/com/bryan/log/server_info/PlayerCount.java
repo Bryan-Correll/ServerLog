@@ -29,7 +29,8 @@ public class PlayerCount {
             try {
                 methods.moveToHistory();
             } catch (InvalidConfigurationException ex) {
-                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(Player Count) There was a fatal error moving the files to the History... ERROR:");
+                ex.printStackTrace();
             }
         }
         methods.appendString("/Server Information/Player Count/", methods.getConfigFile().getString("player-count").replace("[count]", playerCount.toString()));

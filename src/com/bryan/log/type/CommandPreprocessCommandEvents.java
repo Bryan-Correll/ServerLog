@@ -31,7 +31,8 @@ public class CommandPreprocessCommandEvents implements Listener {
 			try {
 				methods.moveToHistory();
 			} catch (InvalidConfigurationException ex) {
-				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(Commands) There was a fatal error moving the files to the History... ERROR:");
+				ex.printStackTrace();
 			}
 		}
 		methods.appendString("/Commands/", methods.getConfigFile().getString("command-preprocess-event").replace("[player]", e.getPlayer().getName()).replace("[command]", ChatColor.stripColor(e.getMessage())));

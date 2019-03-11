@@ -36,7 +36,8 @@ public class RamUsage {
             try {
                 methods.moveToHistory();
             } catch (InvalidConfigurationException ex) {
-                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(RamUsage) There was a fatal error moving the files to the History... ERROR:");
+                ex.printStackTrace();
             }
         }
         methods.appendString("/Server Information/Ram Usage/", methods.getConfigFile().getString("ram-usage").replace("[ram]", usedMemory + "MB / " + maxMemory + "MB (" + percent + "%)"));

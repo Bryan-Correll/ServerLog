@@ -31,7 +31,8 @@ public class PlayerGamemodeChangeEvents implements Listener {
 			try {
 				methods.moveToHistory();
 			} catch (InvalidConfigurationException ex) {
-				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(Gamemode Change) There was a fatal error moving the files to the History... ERROR:");
+				ex.printStackTrace();
 			}
 		}
 		methods.appendString("/Players/Gamemode Change/", methods.getConfigFile().getString("gamemode-change-event").replace("[player]", e.getPlayer().getName()).replace("[previous]", e.getPlayer().getGameMode().name()).replace("[now]", e.getNewGameMode().name()));

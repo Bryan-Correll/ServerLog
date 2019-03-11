@@ -24,14 +24,14 @@ public class ChunksLoaded {
             try {
                 methods.moveToHistory();
             } catch (InvalidConfigurationException ex) {
-                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(Chunks Loaded) There was a fatal error moving the files to the History... ERROR:");
+                ex.printStackTrace();
             }
         }
         List<World> worlds = Bukkit.getServer().getWorlds();
         for (World world : worlds) {
             Integer loadedChunkCount = Bukkit.getServer().getWorld(world.getName()).getLoadedChunks().length;
             methods.appendString("/Server Information/Chunks Loaded/" + world.getName() + "/", methods.getConfigFile().getString("chunks-loaded").replace("[count]", loadedChunkCount.toString()));
-            methods.appendString("/Compiled Log/" + world.getName() + "/", methods.getConfigFile().getString("chunks-loaded").replace("[count]", loadedChunkCount.toString()));
         }
     }
 

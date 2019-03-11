@@ -31,7 +31,8 @@ public class PlayerJoinEvents implements Listener {
 			try {
 				methods.moveToHistory();
 			} catch (InvalidConfigurationException ex) {
-				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(Player Join) There was a fatal error moving the files to the History... ERROR:");
+				ex.printStackTrace();
 			}
 		}
 		methods.appendString("/Activity/Player Join/", methods.getConfigFile().getString("join-event").replace("[player]", e.getPlayer().getName()).replace("[ip]", e.getPlayer().getAddress().getAddress().getHostAddress()));

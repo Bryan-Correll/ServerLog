@@ -108,7 +108,8 @@ public class ServerLog extends JavaPlugin {
                 entityCount.appendEntityCount();
                 playerCount.appendPlayerCount();
             } catch (IOException e) {
-                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error saving server info...");
+                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error saving server info..." + "ERROR:");
+                e.printStackTrace();
             }
         }, 0, (long) getConfig().getDouble("server-info-delay") * 60L * 20L);
     }

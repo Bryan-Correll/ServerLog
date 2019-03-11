@@ -60,7 +60,8 @@ public class TPS {
             try {
                 methods.moveToHistory();
             } catch (InvalidConfigurationException ex) {
-                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(TPS) There was a fatal error moving the files to the History... ERROR:");
+                ex.printStackTrace();
             }
         }
         methods.appendString("/Server Information/TPS/", methods.getConfigFile().getString("tps").replace("[tps]", getTPS(0)));

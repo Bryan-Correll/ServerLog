@@ -38,7 +38,8 @@ public class PlayerTeleportEvents implements Listener {
 			try {
 				methods.moveToHistory();
 			} catch (InvalidConfigurationException ex) {
-				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(Teleport) There was a fatal error moving the files to the History... ERROR:");
+				ex.printStackTrace();
 			}
 		}
 		methods.appendString("/Players/Teleport/", methods.getConfigFile().getString("teleport-event").replace("[player]", e.getPlayer().getName()).replace("[location]", loc));

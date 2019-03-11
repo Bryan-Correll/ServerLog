@@ -48,7 +48,8 @@ public class PlayerDeathEvents implements Listener {
 			try {
 				methods.moveToHistory();
 			} catch (InvalidConfigurationException ex) {
-				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "There was a fatal error moving the files to the History...");
+				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(Death) There was a fatal error moving the files to the History... ERROR:");
+				ex.printStackTrace();
 			}
 		}
 		methods.appendString("/Players/Death/", methods.getConfigFile().getString("death-event").replace("[player]", e.getEntity().getName()).replace("[reason]", reason));
