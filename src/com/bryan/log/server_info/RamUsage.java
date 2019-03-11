@@ -40,6 +40,7 @@ public class RamUsage {
             }
         }
         methods.appendString("/Server Information/Ram Usage/", methods.getConfigFile().getString("ram-usage").replace("[ram]", usedMemory + "MB / " + maxMemory + "MB (" + percent + "%)"));
+        methods.appendString("/Compiled Log/", methods.getConfigFile().getString("ram-usage").replace("[ram]", usedMemory + "MB / " + maxMemory + "MB (" + percent + "%)"));
     }
 
 }

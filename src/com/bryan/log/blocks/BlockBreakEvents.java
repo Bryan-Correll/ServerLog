@@ -12,11 +12,11 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 import java.io.IOException;
 
-public class BlockBreak implements Listener {
+public class BlockBreakEvents implements Listener {
 	
 	private ServerLog serverLog;
 	private Methods methods;
-	public BlockBreak(ServerLog serverLog) {
+	public BlockBreakEvents(ServerLog serverLog) {
 		this.serverLog = serverLog;
 		this.methods = new Methods(serverLog);
 	}

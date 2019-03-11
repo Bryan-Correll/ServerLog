@@ -12,11 +12,11 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.io.IOException;
 
-public class Quit implements Listener {
+public class PlayerQuitEvents implements Listener {
 	
 	private ServerLog serverLog;
 	private Methods methods;
-	public Quit(ServerLog serverLog) {
+	public PlayerQuitEvents(ServerLog serverLog) {
 		this.serverLog = serverLog;
 		this.methods = new Methods(serverLog);
 	}

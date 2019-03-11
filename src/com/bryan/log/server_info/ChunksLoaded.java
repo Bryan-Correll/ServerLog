@@ -31,6 +31,7 @@ public class ChunksLoaded {
         for (World world : worlds) {
             Integer loadedChunkCount = Bukkit.getServer().getWorld(world.getName()).getLoadedChunks().length;
             methods.appendString("/Server Information/Chunks Loaded/" + world.getName() + "/", methods.getConfigFile().getString("chunks-loaded").replace("[count]", loadedChunkCount.toString()));
+            methods.appendString("/Compiled Log/" + world.getName() + "/", methods.getConfigFile().getString("chunks-loaded").replace("[count]", loadedChunkCount.toString()));
         }
     }
 

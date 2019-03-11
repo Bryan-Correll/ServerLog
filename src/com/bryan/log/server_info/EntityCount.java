@@ -31,6 +31,7 @@ public class EntityCount {
         for (World world : worlds) {
             Integer entityCount = Bukkit.getServer().getWorld(world.getName()).getEntities().size();
             methods.appendString("/Server Information/Entity Count/" + world.getName() + "/", methods.getConfigFile().getString("entity-count").replace("[count]", entityCount.toString()));
+            methods.appendString("/Compiled Log/" + world.getName() + "/", methods.getConfigFile().getString("entity-count").replace("[count]", entityCount.toString()));
         }
     }
 

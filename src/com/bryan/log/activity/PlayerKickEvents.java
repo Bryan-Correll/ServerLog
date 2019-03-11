@@ -12,11 +12,11 @@ import org.bukkit.event.player.PlayerKickEvent;
 
 import java.io.IOException;
 
-public class Kick implements Listener {
+public class PlayerKickEvents implements Listener {
 
 	private ServerLog serverLog;
 	private Methods methods;
-	public Kick(ServerLog serverLog) {
+	public PlayerKickEvents(ServerLog serverLog) {
 		this.serverLog = serverLog;
 		this.methods = new Methods(serverLog);
 	}

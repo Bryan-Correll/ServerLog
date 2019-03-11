@@ -12,11 +12,11 @@ import org.bukkit.event.player.PlayerBucketEmptyEvent;
 
 import java.io.IOException;
 
-public class EmptyBucket implements Listener {
+public class EmptyBucketEvents implements Listener {
 	
 	private ServerLog serverLog;
 	private Methods methods;
-	public EmptyBucket(ServerLog serverLog) {
+	public EmptyBucketEvents(ServerLog serverLog) {
 		this.serverLog = serverLog;
 		this.methods = new Methods(serverLog);
 	}

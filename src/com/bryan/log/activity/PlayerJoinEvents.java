@@ -13,12 +13,12 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.io.IOException;
 
-public class Join implements Listener {
+public class PlayerJoinEvents implements Listener {
 	
 	private ServerLog serverLog;
 	private Methods methods;
 
-	public Join(ServerLog serverLog) {
+	public PlayerJoinEvents(ServerLog serverLog) {
 		this.serverLog = serverLog;
 		this.methods = new Methods(serverLog);
 	}

@@ -12,11 +12,11 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 import java.io.IOException;
 
-public class BlockPlace implements Listener{
+public class BlockPlaceEvents implements Listener{
 	
 	private ServerLog serverLog;
 	private Methods methods;
-	public BlockPlace(ServerLog serverLog) {
+	public BlockPlaceEvents(ServerLog serverLog) {
 		this.serverLog = serverLog;
 		this.methods = new Methods(serverLog);
 	}

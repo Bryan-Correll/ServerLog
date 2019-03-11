@@ -33,6 +33,7 @@ public class PlayerCount {
             }
         }
         methods.appendString("/Server Information/Player Count/", methods.getConfigFile().getString("player-count").replace("[count]", playerCount.toString()));
+        methods.appendString("/Compiled Log/", methods.getConfigFile().getString("player-count").replace("[count]", playerCount.toString()));
     }
 
 }

@@ -12,11 +12,11 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 import java.io.IOException;
 
-public class Command implements Listener {
+public class CommandPreprocessCommandEvents implements Listener {
 	
 	private ServerLog serverLog;
 	private Methods methods;
-	public Command(ServerLog serverLog) {
+	public CommandPreprocessCommandEvents(ServerLog serverLog) {
 		this.serverLog = serverLog;
 		this.methods = new Methods(serverLog);
 	}
@@ -35,6 +35,7 @@ public class Command implements Listener {
 			}
 		}
 		methods.appendString("/Commands/", methods.getConfigFile().getString("command-preprocess-event").replace("[player]", e.getPlayer().getName()).replace("[command]", ChatColor.stripColor(e.getMessage())));
+		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("command-preprocess-event").replace("[player]", e.getPlayer().getName()).replace("[command]", ChatColor.stripColor(e.getMessage())));
 	}
 	
 }

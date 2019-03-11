@@ -12,11 +12,11 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.io.IOException;
 
-public class Chat implements Listener {
+public class AsyncPlayerChatEvents implements Listener {
 	
 	private ServerLog serverLog;
 	private Methods methods;
-	public Chat(ServerLog serverLog) {
+	public AsyncPlayerChatEvents(ServerLog serverLog) {
 		this.serverLog = serverLog;
 		this.methods = new Methods(serverLog);
 	}
@@ -35,6 +35,7 @@ public class Chat implements Listener {
 			}
 		}
 		methods.appendString("/Chat/", methods.getConfigFile().getString("async-chat-event").replace("[player]", e.getPlayer().getName()).replace("[message]", ChatColor.stripColor(e.getMessage())));
+		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("async-chat-event").replace("[player]", e.getPlayer().getName()).replace("[message]", ChatColor.stripColor(e.getMessage())));
 	}
 	
 }

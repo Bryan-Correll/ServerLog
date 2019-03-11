@@ -64,6 +64,7 @@ public class TPS {
             }
         }
         methods.appendString("/Server Information/TPS/", methods.getConfigFile().getString("tps").replace("[tps]", getTPS(0)));
+        methods.appendString("/Compiled Log/", methods.getConfigFile().getString("tps").replace("[tps]", getTPS(0)));
     }
 
 }

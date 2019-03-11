@@ -2,13 +2,14 @@ package com.bryan.log.utils;
 
 public enum DirectoryEnums {
 
+    COMPILED_LOG("/Compiled Log/"),
     HISTORY("/History/"),
-    SERVERINFORMATION("/Server Information/"),
-    TPSVALUE("/Server Information/TPS/"),
-    RAMUSAGE("/Server Information/Ram Usage/"),
-    PLAYERCOUNT("/Server Information/Player Count/"),
-    ENTITYCOUNT("/Server Information/Entity Count/"),
-    CUNKSLOADED("/Server Information/Chunks Loaded/"),
+    SERVER_INFORMATION("/Server Information/"),
+    TPS("/Server Information/TPS/"),
+    RAM("/Server Information/Ram Usage/"),
+    PLAYER_COUNT("/Server Information/Player Count/"),
+    ENTITY_COUNT("/Server Information/Entity Count/"),
+    CHUNKS_LOADED("/Server Information/Chunks Loaded/"),
     LANG("/Lang/"),
     ACTIVITY("/Activity/"),
     JOIN("/Activity/Player Join/"),
@@ -25,10 +26,10 @@ public enum DirectoryEnums {
     DROP("/Items/Item Drop/"),
     PLAYERS("/Players/"),
     DEATH("/Players/Death/"),
-    GAMEMODECHANGE("/Players/Gamemode Change/"),
+    GAMEMODE_CHANGE("/Players/Gamemode Change/"),
     RESPAWN("/Players/Respawn/"),
     TELEPORT("/Players/Teleport/"),
-    CUSTOMAPIS("/Custom APIs/"),
+    CUSTOM_APIS("/Custom APIs/"),
     VOUCHERS("/Custom APIs/Vouchers/");
 
     public String directory;
