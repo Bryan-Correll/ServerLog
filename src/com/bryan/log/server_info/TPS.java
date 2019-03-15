@@ -14,10 +14,8 @@ import java.text.DecimalFormat;
 
 public class TPS {
 
-    private ServerLog serverLog;
     private Methods methods;
     public TPS(ServerLog serverLog) {
-        this.serverLog = serverLog;
         this.methods = new Methods(serverLog);
     }
 
@@ -59,11 +57,12 @@ public class TPS {
         if (methods.dateChanged("/Server Information/TPS/")) {
             try {
                 methods.moveToHistory();
-            } catch (InvalidConfigurationException ex) {
-                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(TPS) There was a fatal error moving the files to the History... ERROR:");
+            } catch (InvalidConfigurationException | IOException ex) {
+                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(Date Change) There was a fatal error moving the files to the History... ERROR:");
                 ex.printStackTrace();
             }
         }
+
         methods.appendString("/Server Information/TPS/", methods.getConfigFile().getString("tps").replace("[tps]", getTPS(0)));
         methods.appendString("/Compiled Log/", methods.getConfigFile().getString("tps").replace("[tps]", getTPS(0)));
     }

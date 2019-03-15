@@ -5,7 +5,6 @@ import com.bryan.log.server_log_api.ServerLogEvent;
 import com.bryan.log.utils.Methods;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -15,10 +14,8 @@ import java.io.IOException;
 
 public class PlayerDeathEvents implements Listener {
 	
-	private ServerLog serverLog;
 	private Methods methods;
 	public PlayerDeathEvents(ServerLog serverLog) {
-		this.serverLog = serverLog;
 		this.methods = new Methods(serverLog);
 	}
 	
@@ -44,14 +41,6 @@ public class PlayerDeathEvents implements Listener {
 		ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("death-event").replace("[time]: ", "").replace("[player]", e.getEntity().getName()).replace("[reason]", reason), methods.getTime(), methods.getDate(), "plugins/ServerLog/Players/Death/", "PlayerDeathEvent");
 		Bukkit.getPluginManager().callEvent(logEvent);
 
-		if (methods.dateChanged("/Players/Death/")) {
-			try {
-				methods.moveToHistory();
-			} catch (InvalidConfigurationException ex) {
-				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(Death) There was a fatal error moving the files to the History... ERROR:");
-				ex.printStackTrace();
-			}
-		}
 		methods.appendString("/Players/Death/", methods.getConfigFile().getString("death-event").replace("[player]", e.getEntity().getName()).replace("[reason]", reason));
 		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("death-event").replace("[player]", e.getEntity().getName()).replace("[reason]", reason));
 	}

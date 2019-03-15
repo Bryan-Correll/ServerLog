@@ -5,7 +5,6 @@ import com.bryan.log.server_log_api.ServerLogEvent;
 import com.bryan.log.utils.Methods;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerPickupItemEvent;
@@ -15,10 +14,8 @@ import java.io.IOException;
 
 public class PlayerPickupItemsEvents implements Listener {
 	
-	private ServerLog serverLog;
 	private Methods methods;
 	public PlayerPickupItemsEvents(ServerLog serverLog) {
-		this.serverLog = serverLog;
 		this.methods = new Methods(serverLog);
 	}
 	
@@ -39,15 +36,6 @@ public class PlayerPickupItemsEvents implements Listener {
 
 		ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("pickup-item-event").replace("[time]: ", "").replace("[player]", e.getPlayer().getName()).replace("[name]", blockName), methods.getTime(), methods.getDate(), "plugins/ServerLog/Items/Item Pickup/", "PlayerPickupItemEvent");
 		Bukkit.getPluginManager().callEvent(logEvent);
-
-		if (methods.dateChanged("/Items/Item Pickup/")) {
-			try {
-				methods.moveToHistory();
-			} catch (InvalidConfigurationException ex) {
-				Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(Item Pickup) There was a fatal error moving the files to the History... ERROR:");
-				ex.printStackTrace();
-			}
-		}
 
 		methods.appendString("/Items/Item Pickup/", methods.getConfigFile().getString("pickup-item-event").replace("[player]", e.getPlayer().getName()).replace("[name]", blockName));
 		methods.appendString("/Compiled Log/", methods.getConfigFile().getString("pickup-item-event").replace("[player]", e.getPlayer().getName()).replace("[name]", blockName));

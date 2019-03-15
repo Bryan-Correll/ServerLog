@@ -74,14 +74,18 @@ public class Methods {
 
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat(getConfigFile().getString("time"));
-        Date dateYesterday = new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH) - 1).getTime();
+        Date dateToday = new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).getTime();
 
-        File yesterdayFile = new File(serverLog.getDataFolder() + directory + dateFormat.format(dateYesterday) + ".txt");
+        List<File> files = Arrays.asList(new File(serverLog.getDataFolder() + directory).listFiles());
 
-        if (yesterdayFile.exists()) {
-            return true;
-        } else {
+        if (new File(serverLog.getDataFolder() + directory).length() == -1) {
             return false;
+        } else {
+            if (files.contains(new File(serverLog.getDataFolder() + directory + dateFormat.format(dateToday) + ".txt"))) {
+                return false;
+            } else {
+                return true;
+            }
         }
     }
 

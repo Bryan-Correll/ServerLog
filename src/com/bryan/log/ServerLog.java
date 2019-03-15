@@ -17,7 +17,9 @@ import com.bryan.log.server_info.*;
 import com.bryan.log.server_log_api.getAPI;
 import com.bryan.log.type.AsyncPlayerChatEvents;
 import com.bryan.log.type.CommandPreprocessCommandEvents;
-import com.bryan.log.utils.*;
+import com.bryan.log.utils.Methods;
+import com.bryan.log.utils.Metrics;
+import com.bryan.log.utils.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -59,6 +61,15 @@ public class ServerLog extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(color("&f[Server Log]: &aThis is the full version of Server Log, so all features are enabled."));
         updater.checkForUpdate();
         Bukkit.getConsoleSender().sendMessage(color(""));
+
+        if (methods.dateChanged("/Server Information/TPS/")) {
+            try {
+                methods.moveToHistory();
+            } catch (InvalidConfigurationException | IOException ex) {
+                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(Enabling) There was a fatal error moving the files to the History... ERROR:");
+                ex.printStackTrace();
+            }
+        }
 
         try {
             methods.initiateFolders();

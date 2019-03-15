@@ -10,7 +10,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
@@ -24,8 +23,7 @@ public class UpdateChecker {
     private final String localPluginVersion;
     private String spigotPluginVersion;
 
-    //Constants. Customize to your liking.
-    private static final int ID = 64978; //The ID of your resource. Can be found in the resource URL.
+    private static final int ID = 65510; //The ID of your resource. Can be found in the resource URL.
     private static final String UPDATE_MSG = "&f[Server Log]: &eA new update is available at: &6https://www.spigotmc.org/resources/" + ID + "/updates";
     private static final Permission UPDATE_PERM = new Permission("serverlog.update", PermissionDefault.TRUE);
 
@@ -42,12 +40,12 @@ public class UpdateChecker {
                 spigotPluginVersion = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
             } catch (final IOException e) {
                 e.printStackTrace();
-//                        cancel();
                 return;
             }
 
             if (localPluginVersion.equals(spigotPluginVersion)) { return; }
             Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', UPDATE_MSG));
+            Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&eThe current version is " + localPluginVersion + " and the new version is " + spigotPluginVersion + "!"));
 
             Bukkit.getScheduler().runTask(javaPlugin, () -> Bukkit.getPluginManager().registerEvents(new Listener() {
                 @EventHandler(priority = EventPriority.MONITOR)
@@ -55,6 +53,7 @@ public class UpdateChecker {
                     final Player player = event.getPlayer();
                     if (player.hasPermission(UPDATE_PERM)) {
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&', UPDATE_MSG));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eThe current version is " + localPluginVersion + " and the new version is " + spigotPluginVersion + "!"));
                     }
                 }
             }, javaPlugin));
