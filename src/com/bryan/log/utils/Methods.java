@@ -24,7 +24,7 @@ public class Methods {
         this.serverLog = serverLog;
     }
 
-    private String color(String input) {
+    public String color(String input) {
         return ChatColor.translateAlternateColorCodes('&', input);
     }
 
@@ -117,7 +117,7 @@ public class Methods {
 
         File fileDirectory = serverLog.getDataFolder();
         if (!fileDirectory.exists()) {
-            Bukkit.getConsoleSender().sendMessage(color("&7&l[SERVERLOG INFO] &aThe folder '" + fileDirectory.getPath().replace("plugins\\", "") + "' has been created..."));
+            Bukkit.getConsoleSender().sendMessage(color("&f[Server Log]: &aThe folder '" + fileDirectory.getPath().replace("plugins\\", "") + "' has been created..."));
             fileDirectory.mkdirs();
         }
 
@@ -138,7 +138,7 @@ public class Methods {
         for (File dir : directories) {
             if (!dir.exists()) {
                 dir.mkdirs();
-                Bukkit.getConsoleSender().sendMessage(color("&7&l[SERVERLOG INFO] &aThe folder '" + dir.getPath().replace("plugins\\", "") + "' has been created..."));
+                Bukkit.getConsoleSender().sendMessage(color("&f[Server Log]: &aThe folder '" + dir.getPath().replace("plugins\\", "") + "' has been created..."));
             }
             if (dir.equals(new File(serverLog.getDataFolder() + "/Lang/"))) {
                 for (File langFile : files) {
@@ -147,7 +147,7 @@ public class Methods {
                         FileUtils.moveFile(new File(serverLog.getDataFolder() + "/" + langFile.getName()), new File(serverLog.getDataFolder() + "/Lang/" + langFile.getName()));
                         FileConfiguration fileConfig = YamlConfiguration.loadConfiguration(langFile);
                         fileConfig.load(langFile);
-                        Bukkit.getConsoleSender().sendMessage(color("&7&l[SERVERLOG INFO] &eThe lang file '" + langFile.getName() + "' has been created..."));
+                        Bukkit.getConsoleSender().sendMessage(color("&f[Server Log]: &eThe lang file '" + langFile.getName() + "' has been created..."));
                     }
                 }
             } else if (dir.equals(new File(serverLog.getDataFolder() + "/Server Information/Entity Count/"))) {
@@ -155,7 +155,7 @@ public class Methods {
                     File worldDir = new File(dir + "/" + world.getName() + "/");
                     if (!worldDir.exists()) {
                         worldDir.mkdirs();
-                        Bukkit.getConsoleSender().sendMessage(color("&7&l[SERVERLOG INFO] &aThe folder '" + worldDir.getPath().replace("plugins\\", "") + "' has been created..."));
+                        Bukkit.getConsoleSender().sendMessage(color("&f[Server Log]: &aThe folder '" + worldDir.getPath().replace("plugins\\", "") + "' has been created..."));
                     }
                 }
             } else if (dir.equals(new File(serverLog.getDataFolder() + "/Server Information/Chunks Loaded/"))) {
@@ -163,13 +163,13 @@ public class Methods {
                     File worldDir = new File(dir + "/" + world.getName() + "/");
                     if (!worldDir.exists()) {
                         worldDir.mkdirs();
-                        Bukkit.getConsoleSender().sendMessage(color("&7&l[SERVERLOG INFO] &aThe folder '" + worldDir.getPath().replace("plugins\\", "") + "' has been created..."));
+                        Bukkit.getConsoleSender().sendMessage(color("&f[Server Log]: &aThe folder '" + worldDir.getPath().replace("plugins\\", "") + "' has been created..."));
                     }
                 }
             }
         }
 
-        Bukkit.getConsoleSender().sendMessage(color("&7&l[SERVERLOG INFO] &2All files have been initiated..."));
+        Bukkit.getConsoleSender().sendMessage(color("&f[Server Log]: &2All files have been initiated..."));
 
     }
 

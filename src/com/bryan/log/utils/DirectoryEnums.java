@@ -26,6 +26,7 @@ public enum DirectoryEnums {
     DROP("/Items/Item Drop/"),
     PLAYERS("/Players/"),
     DEATH("/Players/Death/"),
+    SPAWN_EGG("/Players/Spawn Mob Egg/"),
     GAMEMODE_CHANGE("/Players/Gamemode Change/"),
     RESPAWN("/Players/Respawn/"),
     TELEPORT("/Players/Teleport/"),

@@ -43,6 +43,7 @@ pickup-item-event: "[time]: [player] recogió el artículo [name]."
 async-chat-event: "[time]: [player] dijo -> [message]."
 command-preprocess-event: "[time]: [player] ejecutó el comando [command]."
 
+spawn-egg: "[time]: [player] engendrar un(a) [entity] a [x], [y], [z]."
 death-event: "[time]: [player] murió a causa de [reason]."
 respawn-event: "[time]: [player] reaparecido."
 gamemode-change-event: "[time]: [player] cambiaron su modo de juego de [previous] a [now]."
