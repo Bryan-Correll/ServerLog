@@ -36,7 +36,11 @@ public class TPS {
     private String getTPS(int time) {
         try {
             double[] tps = ((double[]) tpsField.get(serverInstance));
-            return format.format(tps[time]);
+            if (tps[time] > 20) {
+                return "20";
+            } else {
+                return format.format(tps[time]);
+            }
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }

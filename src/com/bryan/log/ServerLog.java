@@ -65,15 +65,6 @@ public class ServerLog extends JavaPlugin {
             e.printStackTrace();
         }
 
-        if (methods.dateChanged("/Server Information/TPS/")) {
-            try {
-                methods.moveToHistory();
-            } catch (InvalidConfigurationException | IOException ex) {
-                Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "(Enabling) There was a fatal error moving the files to the History... ERROR:");
-                ex.printStackTrace();
-            }
-        }
-
         serverInfo();
 
         Bukkit.getPluginManager().registerEvents(new PlayerJoinEvents(this), this);

@@ -3,6 +3,7 @@ package com.bryan.log.items;
 import com.bryan.log.ServerLog;
 import com.bryan.log.server_log_api.ServerLogEvent;
 import com.bryan.log.utils.Methods;
+import com.bryan.log.utils.UMaterial;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -26,12 +27,24 @@ public class PlayerPickupItemsEvents implements Listener {
 		ItemStack item = e.getItem().getItemStack();
 		if (item.hasItemMeta()) {
 			if (item.getItemMeta().hasDisplayName()) {
-				blockName = ChatColor.stripColor(item.getItemMeta().getDisplayName()) + " (" + item.getType().name() + ")";
+				if (item.getType().name().contains("MONSTER_EGG") || item.getType().name().contains("SPAWN_EGG")) {
+					blockName = ChatColor.stripColor(item.getItemMeta().getDisplayName()) + " (" + UMaterial.matchSpawnEgg(e.getItem().getItemStack()).name() + ")";
+				} else {
+					blockName = ChatColor.stripColor(item.getItemMeta().getDisplayName()) + " (" + item.getType().name() + ")";
+				}
 			} else{
-				blockName = item.getType().name();
+				if (item.getType().name().contains("MONSTER_EGG") || item.getType().name().contains("SPAWN_EGG")) {
+					blockName = UMaterial.matchSpawnEgg(e.getItem().getItemStack()).name();
+				} else {
+					blockName = item.getType().name();
+				}
 			}
 		} else {
-			blockName = item.getType().name();
+			if (item.getType().name().contains("MONSTER_EGG") || item.getType().name().contains("SPAWN_EGG")) {
+				blockName = UMaterial.matchSpawnEgg(e.getItem().getItemStack()).name();
+			} else {
+				blockName = item.getType().name();
+			}
 		}
 
 		ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("pickup-item-event").replace("[time]: ", "").replace("[player]", e.getPlayer().getName()).replace("[name]", blockName), methods.getTime(), methods.getDate(), "plugins/ServerLog/Items/Item Pickup/", "PlayerPickupItemEvent");
