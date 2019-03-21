@@ -41,9 +41,16 @@ public class Methods {
     }
 
     public void appendString(String folder, String configString) throws IOException {
+
         Date dateNow = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat(getConfigFile().getString("time"));
         SimpleDateFormat txtFormat = new SimpleDateFormat(getConfigFile().getString("log-time"));
+
+        File folderDir = new File(serverLog.getDataFolder() + folder);
+
+        if (!folderDir.exists()) {
+            folderDir.mkdirs();
+        }
 
         File dateFile = new File(serverLog.getDataFolder() + folder + dateFormat.format(dateNow) + ".txt");
 

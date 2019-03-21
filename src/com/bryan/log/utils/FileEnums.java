@@ -9,7 +9,8 @@ public enum FileEnums {
     FR("/Lang/fr.yml"),
     NL("/Lang/nl.yml"),
     PL("/Lang/pl.yml"),
-    PT("/Lang/pt.yml");
+    PT("/Lang/pt.yml"),
+    ZH("/Lang/zh.yml");
 
     public String fileName;
 
