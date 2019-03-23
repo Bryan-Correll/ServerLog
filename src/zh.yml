@@ -17,36 +17,36 @@
 
 #                                MM = 月 dd = 天 yyyyyyy= 年
 #                                HH = 小时 mm = 分钟 ss = 秒
-# 这是将创建的文件的名称。
-time: "MM-dd-yyyy"
-# 这是将记录在每个日志文件中的时间。
-log-time: "HH:MM: ss"
+# 这是日志创建的文件名称。
+time: "yyyy-MM-dd"
+# 这是记录在每个日志文件中的时间格式。
+log-time: "HH:MM:ss"
 
 
-tps: "[time]: TPS 是 [tps]."
-ram-usage: "[time]: 当前 RAM 的使用情况是 [ram]."
-player-count: "[time]: 当前玩家计数为 [count]."
-entity-count: "[time]: 当前实体计数为 [count]."
-chunks-loaded: "[time]: 加载的当前块的数量为 [count]."
+tps: "[time]: TPS 是 [tps]"
+ram-usage: "[time]: 当前内存使用情况 [ram]"
+player-count: "[time]: 当前玩家总数为 [count]"
+entity-count: "[time]: 当前实体总数为 [count]"
+chunks-loaded: "[time]: 当前加载区块总数为 [count]"
 
-join-event: "[time]: [player] 从 IP 连接 [ip]."
-quit-event: "[time]: [player] 在该位置退出 [x], [y], [z]. 他们的知识产权是 [ip]."
-kick-event: "[time]: [player] 踢。他们的知识产权是 [ip]. 原因: [reason]"
+join-event: "[time]: [player] 从 IP [ip] 进入服务器"
+quit-event: "[time]: [player] 在该坐标退出 [x], [y], [z]，玩家IP [ip]"
+kick-event: "[time]: [player] 被踢出服务器，玩家IP:[ip]，原因:[reason]"
 
-block-place-event: "[time]: [player] 放置块 [block] 在该位置 [x], [y], [z]."
-block-break-event: "[time]: [player] 打破了块 [block] 在该位置 [x], [y], [z]."
-empty-bucket-event: "[time]: [player] 清空了一个 [bucket] 在该位置 [x], [y], [z]."
+block-place-event: "[time]: [player] 在坐标 [x],[y],[z] 放置了 [block]"
+block-break-event: "[time]: [player] 在坐标 [x],[y],[z] 打破了 [block]"
+empty-bucket-event: "[time]: [player] 在坐标 [x],[y],[z] 清空了 [bucket]"
 
-drop-item-event: "[time]: [player] 删除该项目 [name]."
-pickup-item-event: "[time]: [player] 拿起该项目 [name]."
+drop-item-event: "[time]: [player] 丢弃了 [name]"
+pickup-item-event: "[time]: [player] 拾起了 [name]"
 
-async-chat-event: "[time]: [player] 说 -> [message]."
-command-preprocess-event: "[time]: [player] 运行命令 [command]."
+async-chat-event: "[time]: [player] -> [message]"
+command-preprocess-event: "[time]: [player] 运行命令 [command]"
 
-spawn-egg: "[time]: [player] 生成了 [entity] 在 [x], [y], [z]."
-death-event: "[time]: [player] 死于 [reason]."
-respawn-event: "[time]: [player] 重新调整."
-gamemode-change-event: "[time]: [player] 改变了他们的游戏 [previous] 自 [now]."
-teleport-event: "[time]: [player] 传送到 [location]."
+spawn-egg: "[time]: [player] 在坐标 [x],[y],[z] 生成了 [entity]"
+death-event: "[time]: [player] 死于 [reason]"
+respawn-event: "[time]: [player] 重生"
+gamemode-change-event: "[time]: [player] 将游戏模式从 [previous] 改变为 [now]"
+teleport-event: "[time]: [player] 传送到坐标 [location]"
 
-voucher-api: "[time]: [player] 兑换的凭证 [voucher-name]."
+voucher-api: "[time]: [player] 兑换的凭证 [voucher-name]"

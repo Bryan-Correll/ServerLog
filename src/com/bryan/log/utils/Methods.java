@@ -120,6 +120,13 @@ public class Methods {
         initiateFolders();
     }
 
+    public boolean bStatsEnabled() {
+        File bStatsFolder = new File(serverLog.getDataFolder().getParentFile(), "bStats");
+        File configFile = new File(bStatsFolder, "config.yml");
+        YamlConfiguration bStatsConfig = YamlConfiguration.loadConfiguration(configFile);
+        return bStatsConfig.getBoolean("enabled");
+    }
+
     public void initiateFolders() throws IOException, InvalidConfigurationException {
 
         File fileDirectory = serverLog.getDataFolder();

@@ -22,10 +22,17 @@ public class PlayerDeathEvents implements Listener {
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e) throws IOException {
 
+		String bukkitVersion = Bukkit.getBukkitVersion();
+
 		String reason = e.getEntity().getLastDamageCause().getCause().name();
 		if (reason.equalsIgnoreCase("ENTITY_ATTACK")) {
 			String weapon;
-			ItemStack item = e.getEntity().getKiller().getItemInHand();
+			ItemStack item;
+			if (bukkitVersion.contains("1.9") || bukkitVersion.contains("1.10") || bukkitVersion.contains("1.11") || bukkitVersion.contains("1.12") || bukkitVersion.contains("1.13")) {
+				item = e.getEntity().getKiller().getInventory().getItemInMainHand();
+			} else {
+				item = e.getEntity().getKiller().getItemInHand();
+			}
 			if (item.hasItemMeta()) {
 				if (item.getItemMeta().hasDisplayName()) {
 					weapon = ChatColor.stripColor(item.getItemMeta().getDisplayName()) + " (" + item.getType().name() + ")";
