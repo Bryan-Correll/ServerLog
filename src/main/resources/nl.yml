@@ -1,0 +1,52 @@
+#       Placeholders:
+#           [player]   - De speler die de gebeurtenis heeft genoemd.
+#           [time]     - De tijd die de speler het evenement noemde.
+#           [tps]      - De TPS die de server heeft. (Alleen gebruiken in de tps draad!)
+#           [count]    - Een telling berekend
+#           [ram]      - De ram die de server gebruikt(Alleen gebruiken in de ram-usage draad!)
+#           [message]  - Het bericht verzonden door de speler(Alleen gebruiken in de async-chat-event draad!)
+#           [ip]       - Het IP dat de speler het evenement heeft genoemd.
+#           [reason]   - De reden waarom de speler het evenement heeft genoemd(Alleen gebruiken in de kick-event draad!)
+#           [block]    - Het blok dat is gemanipuleered
+#           [bucket]   - De emmer die leeg was.(Alleen gebruiken in de empty-bucket-event draad!)
+#           [previous] - De vorige gamemode. (Alleen gebruiken in de gamemode-change-event draad!)
+#           [new]      - De nieuwe gamemode van de speler. (Alleen gebruiken in de gamemode-change-event draad!)
+#           [x]        - De 'x' plaats.
+#           [y]        - De 'y' plaats.
+#           [z]        - De 'z' plaats.
+
+#                                MM = Maand   dd = Dag     yyyy = Jaar
+#                                HH = Uur    mm = Minuut    ss = Tweede
+# This is the name of the file that will be created.
+time: "MM-dd-yyyy"
+# This is the time that will be logged in each log file.
+log-time: "HH:mm:ss"
+
+
+tps: "[time]: De TPS is [tps]."
+ram-usage: "[time]: Het huidige RAM-gebruik is [ram]."
+player-count: "[time]: Het huidige aantal spelers is [count]."
+entity-count: "[time]: Het huidige aantal entiteiten is [count]."
+chunks-loaded: "[time]: De hoeveelheid huidige chunks die wordt geladen is [count]."
+
+join-event: "[time]: [player] aangesloten vanaf het IP [ip]."
+quit-event: "[time]: [player] stop op de locatie [x], [y], [z]. Hun IP was [ip]."
+kick-event: "[time]: [player] geschopt. Hun IP was [ip]. Reden: [reason]"
+
+block-place-event: "[time]: [player] plaatste het blok [block] op de locatie [x], [y], [z]."
+block-break-event: "[time]: [player] brak het blok [block] op de locatie [x], [y], [z]."
+empty-bucket-event: "[time]: [player] geleegd a [bucket] op de locatie [x], [y], [z]."
+
+drop-item-event: "[time]: [player] liet het item vallen [name]."
+pickup-item-event: "[time]: [player] pakte het item op [name]."
+
+async-chat-event: "[time]: [player] zei -> [message]."
+command-preprocess-event: "[time]: [player] heeft het commando uitgevoerd [command]."
+
+spawn-egg: "[time]: [player] voortgebracht a [entity] op [x], [y], [z]."
+death-event: "[time]: [player] stierf vanwege [reason]."
+respawn-event: "[time]: [player] respawned."
+gamemode-change-event: "[time]: [player] veranderde hun gamemode van [previous] naar [now]."
+teleport-event: "[time]: [player] geteleporteerd naar [location]."
+
+voucher-api: "[time]: [player] heeft de voucher ingewisseld [voucher-name]."

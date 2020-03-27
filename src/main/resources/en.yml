@@ -1,0 +1,52 @@
+#       Placeholders:
+#           [player]   - The player that called the event.
+#           [time]     - The time that the player called the event.
+#           [tps]      - The TPS the server has. (Only use in the tps string!)
+#           [count]    - A count calculated.
+#           [ram]      - The ram the server is using. (Only use in the ram-usage string!)
+#           [message]  - The message sent by the player (Only use in the async-chat-event string!)
+#           [ip]       - The IP that the player called the event from.
+#           [reason]   - The reason the player called the event. (Only use in the kick-event string!)
+#           [block]    - The block that was manipulated.
+#           [bucket]   - The bucket that was emptied. (Only use in the empty-bucket-event string!)
+#           [previous] - The player's previous gamemode. (Only use in the gamemode-change-event string!)
+#           [new]      - The player's new gamemode. (Only use in the gamemode-change-event string!)
+#           [x]        - The 'x' location.
+#           [y]        - The 'y' location.
+#           [z]        - The 'z' location.
+
+#                                MM = Month   dd = Day     yyyy = Year
+#                                HH = Hour    mm = Minute    ss = Second
+# This is the name of the file that will be created.
+time: "MM-dd-yyyy"
+# This is the time that will be logged in each log file.
+log-time: "HH:mm:ss"
+
+
+tps: "[time]: The TPS is [tps]."
+ram-usage: "[time]: The current RAM usage is [ram]."
+player-count: "[time]: The current player count is [count]."
+entity-count: "[time]: The current entity count is [count]."
+chunks-loaded: "[time]: The amount of current chunks that are loaded is [count]."
+
+join-event: "[time]: [player] joined from the IP [ip]."
+quit-event: "[time]: [player] quit at the location [x], [y], [z]. Their IP was [ip]."
+kick-event: "[time]: [player] kicked. Their IP was [ip]. Reason: [reason]"
+
+block-place-event: "[time]: [player] placed the block [block] at the location [x], [y], [z]."
+block-break-event: "[time]: [player] broke the block [block] at the location [x], [y], [z]."
+empty-bucket-event: "[time]: [player] emptied a [bucket] at the location [x], [y], [z]."
+
+drop-item-event: "[time]: [player] dropped the item [name]."
+pickup-item-event: "[time]: [player] picked up the item [name]."
+
+async-chat-event: "[time]: [player] said -> [message]."
+command-preprocess-event: "[time]: [player] ran the command [command]."
+
+spawn-egg: "[time]: [player] spawned a(n) [entity] at [x], [y], [z]."
+death-event: "[time]: [player] died because of [reason]."
+respawn-event: "[time]: [player] respawned."
+gamemode-change-event: "[time]: [player] changed their gamemode from [previous] to [now]."
+teleport-event: "[time]: [player] teleported to [location]."
+
+voucher-api: "[time]: [player] redeemed the voucher [voucher-name]."

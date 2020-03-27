@@ -1,0 +1,52 @@
+#       Placeholders:
+#           [player]   - El jugador que convocó el evento.
+#           [time]     - La hora a la que el jugador llamó al evento.
+#           [tps]      - El TPS que tiene el servidor. (Solo usar en la cadena de tps!)
+#           [count]    - Una cuenta calculada.
+#           [ram]      - El ariete que usa el servidor. (Solo usar en la cadena de uso de ram)
+#           [message]  - El mensaje enviado por el jugador (solo se utiliza en la cadena de eventos async-chat-event!)
+#           [ip]       - La IP de la que el jugador llamó al evento.
+#           [reason]   - La razón por la que el jugador llamó al evento. (¡Úsalo solo en la cadena de kick-event!)
+#           [block]    - El bloque que fue manipulado.
+#           [bucket]   - El cubo que se vació. (¡Úsalo solo en la cadena de evento-cubo-vacío!)
+#           [previous] - El modo de juego anterior del jugador. (¡Úsalo solo en la cadena de evento cambio de modo de juego!)
+#           [new]      - El nuevo modo de juego del jugador. (¡Úsalo solo en la cadena de evento cambio de modo de juego!)
+#           [x]        - La ubicación 'x'.
+#           [y]        - La ubicación 'y'.
+#           [z]        - La ubicación 'z'.
+
+#                                MM = Mes   dd = Día     yyyy = Año
+#                                HH = Hour    mm = Minuto    ss = Segundo
+# Este es el nombre del archivo que será creado.
+time: "MM-dd-yyyy"
+# Este es el tiempo que se registrará en cada archivo de registro.
+log-time: "HH:mm:ss"
+
+
+tps: "[time]: El TPS es [tps]."
+ram-usage: "[time]: El uso actual de RAM es [ram]."
+player-count: "[time]: El número de jugadores actual es [count]."
+entity-count: "[time]: La cuenta de la entidad actual es [count]."
+chunks-loaded: "[time]: La cantidad de trozos actuales que se cargan es [count]."
+
+join-event: "[time]: [player] unidos desde la IP [ip]."
+quit-event: "[time]: [player] dejar de fumar en el lugar [x], [y], [z]. Su propiedad intelectual fue [ip]."
+kick-event: "[time]: [player] golpeado. Su propiedad intelectual fue [ip]. Razón: [reason]"
+
+block-place-event: "[time]: [player] coloca el bloque [block] en el lugar [x], [y], [z]."
+block-break-event: "[time]: [player] rompió el bloque [block] en el lugar [x], [y], [z]."
+empty-bucket-event: "[time]: [player] vació un [bucket] en el lugar [x], [y], [z]."
+
+drop-item-event: "[time]: [player] dejó caer el artículo [name]."
+pickup-item-event: "[time]: [player] recogió el artículo [name]."
+
+async-chat-event: "[time]: [player] dijo -> [message]."
+command-preprocess-event: "[time]: [player] ejecutó el comando [command]."
+
+spawn-egg: "[time]: [player] engendrar un(a) [entity] a [x], [y], [z]."
+death-event: "[time]: [player] murió a causa de [reason]."
+respawn-event: "[time]: [player] reaparecido."
+gamemode-change-event: "[time]: [player] cambiaron su modo de juego de [previous] a [now]."
+teleport-event: "[time]: [player] teletransportado a [location]."
+
+voucher-api: "[time]: [player] canjeamos el cupón [voucher-name]."
