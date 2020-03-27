@@ -14,19 +14,30 @@ import java.io.IOException;
 public class CommandPreprocessCommandEvents implements Listener {
 
     private Methods methods;
+    private ServerLog serverLog;
 
     public CommandPreprocessCommandEvents(ServerLog serverLog) {
         this.methods = new Methods(serverLog);
+        this.serverLog = serverLog;
     }
 
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent e) throws IOException {
+        String command;
+        if(e.getMessage().contains(" ")) {
+            command = e.getMessage().substring(0, e.getMessage().indexOf(" "));
+        } else {
+            command = e.getMessage();
+        }
 
-        ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("command-preprocess-event").replace("[player]", e.getPlayer().getName()).replace("[command]", ChatColor.stripColor(e.getMessage())), methods.getTime(), methods.getDate(), "plugins/ServerLog/Commands/", "PlayerCommandPreprocessEvent");
-        Bukkit.getPluginManager().callEvent(logEvent);
+        if(!serverLog.getConfig().getStringList("blocked-commands").contains(command)) {
+            System.out.println(command);
+            ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("command-preprocess-event").replace("[player]", e.getPlayer().getName()).replace("[command]", ChatColor.stripColor(e.getMessage())), methods.getTime(), methods.getDate(), "plugins/ServerLog/Commands/", "PlayerCommandPreprocessEvent");
+            Bukkit.getPluginManager().callEvent(logEvent);
 
-        methods.appendString("/Commands/", methods.getConfigFile().getString("command-preprocess-event").replace("[player]", e.getPlayer().getName()).replace("[command]", ChatColor.stripColor(e.getMessage())));
-        methods.appendString("/Compiled Log/", methods.getConfigFile().getString("command-preprocess-event").replace("[player]", e.getPlayer().getName()).replace("[command]", ChatColor.stripColor(e.getMessage())));
+            methods.appendString("/Commands/", methods.getConfigFile().getString("command-preprocess-event").replace("[player]", e.getPlayer().getName()).replace("[command]", ChatColor.stripColor(e.getMessage())));
+            methods.appendString("/Compiled Log/", methods.getConfigFile().getString("command-preprocess-event").replace("[player]", e.getPlayer().getName()).replace("[command]", ChatColor.stripColor(e.getMessage())));
+        }
     }
 
 }

@@ -101,17 +101,21 @@ public class ServerLog extends JavaPlugin {
             e.printStackTrace();
         }
 
+        registerAPIS();
+
+        registerEvents();
+
+        serverInfo();
+
+    }
+
+    private void registerAPIS() {
         if (pluginManager.isPluginEnabled("Vouchers")) {
             if (getConfig().getBoolean("vouchers-api")) {
                 pluginManager.registerEvents(new VouchersRedemptionEvents(this), this);
                 commandSender.sendMessage(methods.color("&f[Server Log]: &6The plugin 'Vouchers' API has been enabled and is logging voucher redemption."));
             }
         }
-
-        registerEvents();
-
-        serverInfo();
-
     }
 
     private void registerEvents() {

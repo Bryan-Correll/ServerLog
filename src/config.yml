@@ -1,8 +1,14 @@
 #   This is the language file that you can select to use for your server. Please select a .yml from the
-#   ServerLog/Lang folder to modify the language file for your server.
-lang: "en"
-#   This is the time in between all the Server Info being send into the specified .txt file in minutes.
-server-info-delay: 5
+            #   ServerLog/Lang folder to modify the language file for your server.
+            lang: "en"
+            #   This is the time in between all the Server Info being send into the specified .txt file in minutes.
+            server-info-delay: 5
 
-#   These are the custom API's that can be toggled to log specific events from specific plugins.
-vouchers-api: true  # Link: https://www.spigotmc.org/resources/vouchers.13654/
+            #   These are the custom API's that can be toggled to log specific events from specific plugins.
+            vouchers-api: true  # Link: https://www.spigotmc.org/resources/vouchers.13654/
+
+            #   These are commands that you do not want to be logged inside of the commands log.
+            #   (This will block a command and all of its arguments ie: /login pass will be blocked if you add login to the commands)
+            blocked-commands:
+                  - /login
+                  - /register

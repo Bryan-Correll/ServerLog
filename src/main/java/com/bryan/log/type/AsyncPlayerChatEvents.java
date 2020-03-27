@@ -14,16 +14,18 @@ import java.io.IOException;
 public class AsyncPlayerChatEvents implements Listener {
 
     private Methods methods;
+    private ServerLog serverLog;
 
     public AsyncPlayerChatEvents(ServerLog serverLog) {
         this.methods = new Methods(serverLog);
+        this.serverLog = serverLog;
     }
 
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) throws IOException {
 
         ServerLogEvent logEvent = new ServerLogEvent(methods.getConfigFile().getString("async-chat-event").replace("[player]", e.getPlayer().getName()).replace("[message]", ChatColor.stripColor(e.getMessage())), methods.getTime(), methods.getDate(), "plugins/ServerLog/Chat/", "AsyncPlayerChatEvent");
-        Bukkit.getPluginManager().callEvent(logEvent);
+        Bukkit.getScheduler().runTask(serverLog, () -> Bukkit.getPluginManager().callEvent(logEvent));
 
         methods.appendString("/Chat/", methods.getConfigFile().getString("async-chat-event").replace("[player]", e.getPlayer().getName()).replace("[message]", ChatColor.stripColor(e.getMessage())));
         methods.appendString("/Compiled Log/", methods.getConfigFile().getString("async-chat-event").replace("[player]", e.getPlayer().getName()).replace("[message]", ChatColor.stripColor(e.getMessage())));
